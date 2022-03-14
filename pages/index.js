@@ -6,7 +6,7 @@ import bodyParser from "body-parser";
 import { promisify } from "util";
 import { optionsDimensions } from "../components/dimensions";
 import { optionsMetrics } from "../components/metrics";
-import { optionsDates } from "../components/dates";
+import { startDates, endDates } from "../components/dates";
 import Notification from "../components/notification";
 import { constants } from "../components/constants";
 import Select from "../components/select";
@@ -30,7 +30,8 @@ export async function getServerSideProps({ req, res }) {
   if (req.method === "POST") {
     const credentialsENV = {
       client_email: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_EMAIL,
-      private_key: process.env.NEXT_PUBLIC_GOOGLE_PRIVATE_KEY.split("\\n").join("\n")
+      private_key:
+        process.env.NEXT_PUBLIC_GOOGLE_PRIVATE_KEY.split("\\n").join("\n"),
     };
     // Using a default constructor instructs the client to use the credentials
     // specified in GOOGLE_APPLICATION_CREDENTIALS environment variable.
@@ -107,11 +108,12 @@ export default function Home(props) {
           title={content.success_title}
           content={content.success_content}
         />
-      ) : // <Notification
-      //   title={content.error_title}
-      //   content={content.error_content}
-      // />
-      null}
+      ) : (
+        <Notification
+          title={content.onboarding_title}
+          content={content.onboarding_content}
+        />
+      )}
       <div className="w-1/2 m-auto">
         <Head>
           <title>{`${content.title} | AnalyticaHouse Product Analytics`}</title>
@@ -130,7 +132,6 @@ export default function Home(props) {
             <Link href="/usage">
               <a>{content.description}</a>
             </Link>
-            .
           </p>
           <form method="post">
             <input
@@ -145,8 +146,8 @@ export default function Home(props) {
               options={optionsDimensions}
             />
             <Select key="metric" name="metric" options={optionsMetrics} />
-            <Select key="startDate" name="startDate" options={optionsDates} />
-            <Select key="endDate" name="endDate" options={optionsDates} />
+            <Select key="startDate" name="startDate" options={startDates} />
+            <Select key="endDate" name="endDate" options={endDates} />
 
             <button type="submit" className={styles.button}>
               Run

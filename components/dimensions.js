@@ -1,9 +1,5 @@
 export const optionsDimensions = [
   {
-    label: "Choose a dimension",
-    value: "",
-  },
-  {
     label: "achievementId",
     value: "achievementId",
   },

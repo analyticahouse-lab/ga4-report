@@ -1,9 +1,5 @@
 export const optionsMetrics = [
   {
-    label: "Choose a metric",
-    value: "",
-  },
-  {
     label: "active1DayUsers",
     value: "active1DayUsers",
   },
@@ -102,9 +98,6 @@ export const optionsMetrics = [
   },
 ];
 
-
-
-
 // crashFreeUsersRate
 // dauPerMau
 // dauPerWau
@@ -127,7 +120,7 @@ export const optionsMetrics = [
 // itemPurchaseQuantity
 // itemRevenue
 // itemViews
-// 
+//
 // publisherAdClicks
 // publisherAdImpressions
 // purchaseRevenue
@@ -135,14 +128,13 @@ export const optionsMetrics = [
 // purchaserConversionRate
 // screenPageViews
 // screenPageViewsPerSession
-// 
-// 
-// totalAdRevenue	
+//
+//
+// totalAdRevenue
 // totalPurchasers
 // totalRevenue
-// 
-// 
+//
+//
 // transactionsPerPurchaser
 // userEngagementDuration
 // wauPerMau
-
