@@ -22,7 +22,7 @@ export async function getServerSideProps({ req, res }) {
   const propertyIdGA4 = req.body?.propertyID || "277788968";
   const metric = req.body?.metric || ["totalUsers"];
   const dimension = req.body?.dimension || ["country"];
-  const startDate = req.body?.startDate || "today";
+  const startDate = req.body?.startDate || "yesterday";
   const endDate = req.body?.endDate || "today";
 
   const { BetaAnalyticsDataClient } = require("@google-analytics/data");
@@ -33,8 +33,7 @@ export async function getServerSideProps({ req, res }) {
       private_key:
         process.env.NEXT_PUBLIC_GOOGLE_PRIVATE_KEY.split("\\n").join("\n"),
     };
-    // Using a default constructor instructs the client to use the credentials
-    // specified in GOOGLE_APPLICATION_CREDENTIALS environment variable.
+
     const analyticsDataClient = new BetaAnalyticsDataClient({
       credentials: credentialsENV,
     });
@@ -55,13 +54,13 @@ export async function getServerSideProps({ req, res }) {
       metricList.push(METRIC_KEYS);
     }
 
-    // Testing selected and converted items
-    // console.log("METRIC", metric);
-    // console.log("METRIC KEYS", METRIC_KEYS);
-    // console.log("METRIC LIST", metricList);
-    // console.log("DIMENSION", dimension);
-    // console.log("DIMENSION KEYS", DIMENSION_KEYS);
-    // console.log("DIMENSION LIST", dimensionList);
+    //Testing selected and converted items
+    //console.log("METRIC", metric);
+    //console.log("METRIC KEYS", METRIC_KEYS);
+    //console.log("METRIC LIST", metricList);
+    //console.log("DIMENSION", dimension);
+    //console.log("DIMENSION KEYS", DIMENSION_KEYS);
+    //console.log("DIMENSION LIST", dimensionList);
 
     const [response] = await analyticsDataClient.runReport({
       property: `properties/${propertyIdGA4}`,
@@ -87,7 +86,6 @@ export async function getServerSideProps({ req, res }) {
         metric: req.body?.metric,
         propertyID: req.body?.propertyID || "277788968",
         message: req.body ? "OK" : "",
-        error: { code: errorCode, message: "Error!" },
       },
     };
   } else {
@@ -117,7 +115,6 @@ export default function Home(props) {
       <div className="w-1/2 m-auto">
         <Head>
           <title>{`${content.title} | AnalyticaHouse Product Analytics`}</title>
-          {process.env.GOOGLE_CLIENT_EMAIL && process.env.GOOGLE_CLIENT_EMAIL}
           <meta
             name="description"
             content={`${content.title} | AnalyticaHouse`}
@@ -136,7 +133,7 @@ export default function Home(props) {
           <form method="post">
             <input
               name="propertyID"
-              defaultValue={props && props.propertyID}
+              defaultValue={props.propertyID}
               placeholder="Paste Property ID"
               className={styles.input}
             />
@@ -155,27 +152,26 @@ export default function Home(props) {
           </form>
           <div className={styles.grid}>
             {" "}
-            {props.data &&
-              props.data.map((row, id) => (
-                <div key={id} className={styles.card}>
-                  <p>
-                    <h2>
-                      {" "}
-                      {row.dimensionValues &&
-                        row.dimensionValues.map(function (item, i) {
-                          return <li key={i}>{item.value}</li>;
-                        })}
-                    </h2>
-                    <br />
-                    <span>
-                      {row.metricValues &&
-                        row.metricValues.map(function (item, i) {
-                          return <li key={i}>{item.value}</li>;
-                        })}
-                    </span>
-                  </p>
-                </div>
-              ))}
+            {props.data.map((row, id) => (
+              <div key={id} className={styles.card}>
+                <p>
+                  <h2>
+                    {" "}
+                    {row.dimensionValues &&
+                      row.dimensionValues.map(function (item, i) {
+                        return <li key={i}>{item.value}</li>;
+                      })}
+                  </h2>
+                  <br />
+                  <span>
+                    {row.metricValues &&
+                      row.metricValues.map(function (item, i) {
+                        return <li key={i}>{item.value}</li>;
+                      })}
+                  </span>
+                </p>
+              </div>
+            ))}
           </div>
         </main>
         <span className={styles.footer}>

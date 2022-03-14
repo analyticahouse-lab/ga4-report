@@ -2,7 +2,6 @@
 
 ## Installed GA4 Account ID's
 
-- 279478206 - Demo Account GA4
 - 277788968 - AnalyticaHouse GA4
 
 ## Development

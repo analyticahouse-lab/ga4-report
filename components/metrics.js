@@ -96,45 +96,145 @@ export const optionsMetrics = [
     label: "transactions",
     value: "transactions",
   },
-];
+  {
+    label: "crashFreeUsersRate",
+    value: "crashFreeUsersRate",
+  },
+  {
+    label: "dauPerMau",
+    value: "dauPerMau",
+  },
+  {
+    label: "dauPerWau",
+    value: "dauPerWau",
+  },
+  {
+    label: "ecommercePurchases",
+    value: "ecommercePurchases",
+  },
+  {
+    label: "engagedSessions",
+    value: "engagedSessions",
+  },
+  {
+    label: "engagementRate",
+    value: "engagementRate",
+  },
+  {
+    label: "eventCount",
+    value: "eventCount",
+  },
+  {
+    label: "eventCountPerUser",
+    value: "eventCountPerUser",
+  },
+  {
+    label: "eventValue",
+    value: "eventValue",
+  },
+  {
+    label: "eventsPerSession",
+    value: "eventsPerSession",
+  },
+  {
+    label: "firstTimePurchaserConversionRate",
+    value: "firstTimePurchaserConversionRate",
+  },
+  {
+    label: "firstTimePurchasers",
+    value: "firstTimePurchasers",
+  },
+  {
+    label: "firstTimePurchasersPerNewUser",
+    value: "firstTimePurchasersPerNewUser",
+  },
+  {
+    label: "itemListClickThroughRate",
+    value: "itemListClickThroughRate",
+  },
+  {
+    label: "itemListClicks",
+    value: "itemListClicks",
+  },
+  {
+    label: "itemListViews",
+    value: "itemListViews",
+  },
+  {
+    label: "itemPromotionClickThroughRate",
+    value: "itemPromotionClickThroughRate",
+  },
+  {
+    label: "itemPromotionClicks",
+    value: "itemPromotionClicks",
+  },
+  {
+    label: "itemPromotionViews",
+    value: "itemPromotionViews",
+  },
+  {
+    label: "itemPurchaseQuantity",
+    value: "itemPurchaseQuantity",
+  },
+  {
+    label: "itemRevenue",
+    value: "itemRevenue",
+  },
+  {
+    label: "itemViews",
+    value: "itemViews",
+  },
+  {
+    label: "publisherAdClicks",
+    value: "publisherAdClicks",
+  },
+  {
+    label: "publisherAdImpressions",
+    value: "publisherAdImpressions",
+  },
+  {
+    label: "purchaseRevenue",
+    value: "purchaseRevenue",
+  },
+  {
+    label: "purchaseToViewRate",
+    value: "purchaseToViewRate",
+  },
+  {
+    label: "purchaserConversionRate",
+    value: "purchaserConversionRate",
+  },
+  {
+    label: "screenPageViews",
+    value: "screenPageViews",
+  },
+  {
+    label: "screenPageViewsPerSession",
+    value: "screenPageViewsPerSession",
+  },
+  {
+    label: "totalAdRevenue",
+    value: "totalAdRevenue",
+  },
+  {
+    label: "totalPurchasers",
+    value: "totalPurchasers",
+  },
+  {
+    label: "totalRevenue",
+    value: "totalRevenue",
+  },
 
-// crashFreeUsersRate
-// dauPerMau
-// dauPerWau
-// ecommercePurchases
-// engagedSessions
-// engagementRate
-// eventCount
-// eventCountPerUser
-// eventValue
-// eventsPerSession
-// firstTimePurchaserConversionRate
-// firstTimePurchasers
-// firstTimePurchasersPerNewUser
-// itemListClickThroughRate
-// itemListClicks
-// itemListViews
-// itemPromotionClickThroughRate
-// itemPromotionClicks
-// itemPromotionViews
-// itemPurchaseQuantity
-// itemRevenue
-// itemViews
-//
-// publisherAdClicks
-// publisherAdImpressions
-// purchaseRevenue
-// purchaseToViewRate
-// purchaserConversionRate
-// screenPageViews
-// screenPageViewsPerSession
-//
-//
-// totalAdRevenue
-// totalPurchasers
-// totalRevenue
-//
-//
-// transactionsPerPurchaser
-// userEngagementDuration
-// wauPerMau
+  {
+    label: "transactionsPerPurchaser",
+    value: "transactionsPerPurchaser",
+  },
+  {
+    label: "userEngagementDuration",
+    value: "userEngagementDuration",
+  },
+  {
+    label: "wauPerMau",
+    value: "wauPerMau",
+  },
+];
