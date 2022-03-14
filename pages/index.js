@@ -30,7 +30,7 @@ export async function getServerSideProps({ req, res }) {
   if (req.method === "POST") {
     const credentialsENV = {
       client_email: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_EMAIL,
-      private_key: process.env.NEXT_PUBLIC_GOOGLE_PRIVATE_KEY,
+      private_key: process.env.NEXT_PUBLIC_GOOGLE_PRIVATE_KEY.split("\\n").join("\n")
     };
     // Using a default constructor instructs the client to use the credentials
     // specified in GOOGLE_APPLICATION_CREDENTIALS environment variable.
