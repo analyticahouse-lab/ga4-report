@@ -47,7 +47,7 @@ export default function Usage() {
                         of cache-control and verified callback domains. So you
                         should add to service account email to each GA4 Account,
                         manually.
-                        <li class=" mt-2">
+                        <li className="mt-2">
                           Go to your GA4 &#8594; Admin &#8594; Property Access
                           Management
                         </li>
