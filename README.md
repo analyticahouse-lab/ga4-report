@@ -19,7 +19,7 @@ So you should add to service account email to each GA4 Account, manually.
 - Go to your GA4 Account > Admin > Property Access Management
 - Click Plus (+), add this email as a new user 👇
 
-`starting-account-d6qaj9r8gh1z@quickstart-1646986345355.iam.gserviceaccount.com`
+`starting-account-s81d1ngszc9q@quickstart-1647295587436.iam.gserviceaccount.com`
 
 - And paste your GA4 property ID to this app.
 
