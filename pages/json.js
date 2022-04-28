@@ -123,7 +123,13 @@ export default function Json(props) {
         </Head>
 
         <main className={styles.main}>
-          <img className="w-24" src={content.logoURL} />
+          <Link href="/">
+            <img
+              className="w-24"
+              style={{ cursor: "pointer" }}
+              src={content.logoURL}
+            />
+          </Link>
           <h1 className={styles.title}>{content.title}</h1>
           <p className={styles.description}>
             <Link href="/usage">
@@ -142,7 +148,11 @@ export default function Json(props) {
               name="dimension"
               options={optionsDimensions}
             />
-            <Select key="metric" name="metric" options={optionsMetrics} />
+            <Select
+              key="metric"
+              name="metric"
+              options={optionsMetrics}
+            />
             {/* <Select key="startDate" name="startDate" options={startDates} />
             <Select key="endDate" name="endDate" options={endDates} /> */}
 

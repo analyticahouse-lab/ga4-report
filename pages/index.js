@@ -137,10 +137,10 @@ export default function Home(props) {
           content={content.onboarding_content}
         />
       )}
-      <CSVLink data={csvData} headers={headers}>
+      {/* <CSVLink data={csvData} headers={headers}>
         Download me
       </CSVLink>
-      ;
+      ; */}
       <div className="w-1/2 m-auto">
         <Head>
           <title>{`${content.title} | AnalyticaHouse Product Analytics`}</title>
@@ -152,12 +152,21 @@ export default function Home(props) {
         </Head>
 
         <main className={styles.main}>
-          <img className="w-24" src={content.logoURL} />
+          <Link href="/">
+            <img
+              className="w-24"
+              style={{ cursor: "pointer" }}
+              src={content.logoURL}
+            />
+          </Link>
+
           <h1 className={styles.title}>{content.title}</h1>
           <p className={styles.description}>
             <Link href="/usage">
               <a>{content.description}</a>
             </Link>
+            <br></br>
+            <Link href="/json">Go to JSON Generator</Link>
           </p>
           <form method="post">
             <input

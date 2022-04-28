@@ -11,9 +11,9 @@ export default function Select({ options, name }) {
   const placeholder = name.includes("start")
     ? "Start Date"
     : null || name.includes("dimension")
-    ? "Choose dimension(s)"
+    ? "Choose at least 2 dimensions"
     : null || name.includes("metric")
-    ? "Choose metric(s)"
+    ? "Choose at least 2 metrics"
     : null || name.includes("end")
     ? "End Date"
     : null;
