@@ -10,8 +10,12 @@ import { startDates, endDates } from "../components/dates";
 import Notification from "../components/notification";
 import { constants } from "../components/constants";
 import Select from "../components/select";
+import { CSVLink, CSVDownload } from "react-csv";
+import { seteuid } from "process";
 
 const getBody = promisify(bodyParser.urlencoded());
+
+//Set raw data for JSON copy
 
 export async function getServerSideProps({ req, res }) {
   if (req.method === "POST") {
@@ -55,12 +59,12 @@ export async function getServerSideProps({ req, res }) {
     }
 
     //Testing selected and converted items
-    //console.log("METRIC", metric);
-    //console.log("METRIC KEYS", METRIC_KEYS);
-    //console.log("METRIC LIST", metricList);
-    //console.log("DIMENSION", dimension);
-    //console.log("DIMENSION KEYS", DIMENSION_KEYS);
-    //console.log("DIMENSION LIST", dimensionList);
+    console.log("METRIC", metric);
+    console.log("METRIC KEYS", METRIC_KEYS);
+    console.log("METRIC LIST", metricList);
+    console.log("DIMENSION", dimension);
+    console.log("DIMENSION KEYS", DIMENSION_KEYS);
+    console.log("DIMENSION LIST", dimensionList);
 
     const [response] = await analyticsDataClient.runReport({
       property: `properties/${propertyIdGA4}`,
@@ -83,6 +87,9 @@ export async function getServerSideProps({ req, res }) {
     return {
       props: {
         data,
+        metricList,
+        dimensionList,
+        DIMENSION_KEYS,
         metric: req.body?.metric,
         propertyID: req.body?.propertyID || "277788968",
         message: req.body ? "OK" : "",
@@ -99,6 +106,24 @@ export async function getServerSideProps({ req, res }) {
 
 export default function Home(props) {
   const content = constants[0];
+  // const [csv, setCSV] = useState([""]);
+  // const [csvHeader, setCSVHeader] = useState([""]);
+
+  // useEffect(() => {
+  //   props.METRIC_KEYS ? setCSV([props.METRIC_KEYS]) : null;
+  // }, [props.METRIC_KEYS]);
+
+  // useEffect(() => {
+  //   props.DIMENSION_KEYS ? setCSVHeader(props.DIMENSION_KEYS) : null;
+  // }, [props.DIMENSION_KEYS]);
+
+  const rowedDAta = props.data.map((row) =>
+    row.dimensionValues.map((item) => item.value)
+  );
+  const headers = [{ label: "Country", key: "country" }];
+
+  const csvData = [{ country: rowedDAta }];
+
   return (
     <div className={styles.container}>
       {props && props.message === "OK" ? (
@@ -112,6 +137,10 @@ export default function Home(props) {
           content={content.onboarding_content}
         />
       )}
+      <CSVLink data={csvData} headers={headers}>
+        Download me
+      </CSVLink>
+      ;
       <div className="w-1/2 m-auto">
         <Head>
           <title>{`${content.title} | AnalyticaHouse Product Analytics`}</title>

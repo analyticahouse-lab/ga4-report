@@ -21,9 +21,11 @@
     "next": "12.1.0",
     "postcss": "^8.4.8",
     "react": "17.0.2",
+    "react-csv": "^2.2.2",
     "react-dom": "17.0.2",
     "react-select": "^5.2.2",
     "react-sortable-hoc": "^2.0.0",
+    "react-syntax-highlighter": "^15.5.0",
     "tailwindcss": "^3.0.23",
     "util": "^0.12.4",
     "yarn": "^1.22.17"
