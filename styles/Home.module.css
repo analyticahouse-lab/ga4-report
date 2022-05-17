@@ -149,9 +149,9 @@ button.button {
   justify-content: center;
   line-height: 2rem;
   border-radius: 7px;
-  box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.775);
   padding: 0.25rem 1rem;
   color: #fff;
   font-weight: 500;
-  background: #0070f3;
+  background: #000000;
 }

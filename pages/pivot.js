@@ -28,6 +28,7 @@ export async function getServerSideProps({ req, res }) {
   const dimension = req.body?.dimension || ["country"];
   const startDate = req.body?.startDate || "yesterday";
   const endDate = req.body?.endDate || "today";
+  const pivotLimit = req.body?.pivotLimit || "100";
 
   const { BetaAnalyticsDataClient } = require("@google-analytics/data");
 
@@ -58,6 +59,16 @@ export async function getServerSideProps({ req, res }) {
       metricList.push(METRIC_KEYS);
     }
 
+    const pivot = [];
+    for (var i = 0; i < dimension.length; i++) {
+      var pivot_keys = {
+        fieldNames: [dimension[i]],
+        limit: pivotLimit,
+      };
+      pivot.push(pivot_keys);
+    }
+
+
     //Testing selected and converted items
     console.log("METRIC", metric);
     console.log("METRIC KEYS", METRIC_KEYS);
@@ -65,8 +76,9 @@ export async function getServerSideProps({ req, res }) {
     console.log("DIMENSION", dimension);
     console.log("DIMENSION KEYS", DIMENSION_KEYS);
     console.log("DIMENSION LIST", dimensionList);
+    console.log("Pivots", pivot);
 
-    const [response] = await analyticsDataClient.runReport({
+    const [response] = await analyticsDataClient.runPivotReport({
       property: `properties/${propertyIdGA4}`,
       dateRanges: [
         {
@@ -76,6 +88,7 @@ export async function getServerSideProps({ req, res }) {
       ],
       dimensions: dimensionList,
       metrics: metricList,
+      pivots: pivot
     });
 
     let data = [];
@@ -104,7 +117,7 @@ export async function getServerSideProps({ req, res }) {
   }
 }
 
-export default function Home(props) {
+export default function Pivot(props) {
   const content = constants[0];
   // const [csv, setCSV] = useState([""]);
   // const [csvHeader, setCSVHeader] = useState([""]);
@@ -120,9 +133,9 @@ export default function Home(props) {
   const rowedDAta = props.data.map((row) =>
     row.dimensionValues.map((item) => item.value)
   );
-  const headers = [{ label: "Country", key: "country" }];
+  // const headers = [{ label: "Country", key: "country" }];
 
-  const csvData = [{ country: rowedDAta }];
+  // const csvData = [{ country: rowedDAta }];
 
   return (
     <div className={styles.container}>
@@ -152,11 +165,6 @@ export default function Home(props) {
         </Head>
 
         <main className={styles.main}>
-          <div className="flex items-center gap-4">
-            <Link href="/json">Go to JSON Builder</Link>
-            <Link href="/pivot">Pivot</Link>
-            <Link href="/utm-builder">🔗 Campaign URL Builder</Link>{" "}
-          </div>
           <Link href="/">
             <img
               className="w-24"
@@ -165,11 +173,13 @@ export default function Home(props) {
             />
           </Link>
 
-          <h1 className={styles.title}>{content.title}</h1>
+          <h1 className={styles.title}>Pivot Report</h1>
           <p className={styles.description}>
             <Link href="/usage">
               <a>{content.description}</a>
             </Link>
+            <br></br>
+            <Link href="/json">Go to JSON Generator</Link>
           </p>
           <form method="post">
             <input
@@ -186,7 +196,13 @@ export default function Home(props) {
             <Select key="metric" name="metric" options={optionsMetrics} />
             <Select key="startDate" name="startDate" options={startDates} />
             <Select key="endDate" name="endDate" options={endDates} />
-
+            <input
+              name="pivotLimit"
+              defaultValue='100'
+              type={"number"}
+              placeholder="Pivot Limit"
+              className={styles.input}
+            />
             <button type="submit" className={styles.button}>
               Run
             </button>

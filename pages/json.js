@@ -130,12 +130,8 @@ export default function Json(props) {
               src={content.logoURL}
             />
           </Link>
-          <h1 className={styles.title}>{content.title}</h1>
-          <p className={styles.description}>
-            <Link href="/usage">
-              <a>{content.description}</a>
-            </Link>
-          </p>
+          <h1 className={styles.title}>JSON Builder</h1>
+          <p className={styles.description}>{content.title}</p>
           <form method="post">
             {/* <input
               name="propertyID"
@@ -148,11 +144,7 @@ export default function Json(props) {
               name="dimension"
               options={optionsDimensions}
             />
-            <Select
-              key="metric"
-              name="metric"
-              options={optionsMetrics}
-            />
+            <Select key="metric" name="metric" options={optionsMetrics} />
             {/* <Select key="startDate" name="startDate" options={startDates} />
             <Select key="endDate" name="endDate" options={endDates} /> */}
 
